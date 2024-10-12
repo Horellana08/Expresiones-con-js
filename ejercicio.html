@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Expresiones | Henry Orellana</title>
+    <!-- Link para estilos con bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Validador de Expresiones</h2>
+
+    <form id="validationForm">
+        <div class="mb-3">
+            <label for="validationType" class="form-label">Seleccione tipo de validación</label>
+            <select class="form-select" id="validationType" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="ipv4">Dirección IP (IPv4)</option>
+                <option value="url">Dirección Web (URL)</option>
+                <option value="email">Dirección de Correo Electrónico</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputField" class="form-label">Ingrese la dirección</label>
+            <input type="text" class="form-control" id="inputField" placeholder="Ingrese el valor a validar" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Validar</button>
+    </form>
+
+    <div class="alert mt-3 d-none" id="resultMessage" role="alert"></div>
+</div>
+<!-- Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Función para validar una dirección IPv4
+    function validateIPv4(ip) {
+        const ipv4Regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        return ipv4Regex.test(ip);
+    }
+
+    // Función para validar URLs
+    function validateURL(url) {
+        const urlRegex = /^(https?|ftp):\/\/([^\s$.?#].[^\s]*)$/i;
+        return urlRegex.test(url);
+    }
+
+    // Función para validar correos electrónicos
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    document.getElementById('validationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+        
+        const validationType = document.getElementById('validationType').value;
+        const inputField = document.getElementById('inputField').value;
+        const resultMessage = document.getElementById('resultMessage');
+        
+        let isValid = false;
+        let validationMessage = '';
+
+        // Seleccionar el tipo de validación
+        switch (validationType) {
+            case 'ipv4':
+                isValid = validateIPv4(inputField);
+                validationMessage = isValid ? 'La dirección IP es válida.' : 'La dirección IP no es válida.';
+                break;
+            case 'url':
+                isValid = validateURL(inputField);
+                validationMessage = isValid ? 'La URL es válida.' : 'La URL no es válida.';
+                break;
+            case 'email':
+                isValid = validateEmail(inputField);
+                validationMessage = isValid ? 'El correo electrónico es válido.' : 'El correo electrónico no es válido.';
+                break;
+            default:
+                validationMessage = 'Por favor seleccione un tipo de validación válido.';
+        }
+
+        // Mostrar el mensaje de resultado
+        resultMessage.textContent = validationMessage;
+        resultMessage.classList.remove('d-none', 'alert-success', 'alert-danger');
+        resultMessage.classList.add(isValid ? 'alert-success' : 'alert-danger');
+    });
+</script>
+
+</body>
+</html>
