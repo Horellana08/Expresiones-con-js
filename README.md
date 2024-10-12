@@ -1,4 +1,4 @@
-# Expresiones-con-js
+ #Expresiones-con-js
 Aprende a como utilizar expresiones regulares
 
 Ejercicio Propuesto:
@@ -12,3 +12,5 @@ exactamente igual que el problema número 1 en el que se selecciona el tipo de
 validación que queremos y un campo de texto a la par donde se ingresa esa dirección.
 Haga que aparezca el mensaje de alerta apropiado si la URL o la dirección IP es válida o
 no
+
+![Captura de pantalla 2024-10-11 192948](https://github.com/user-attachments/assets/1636b6fd-0db6-4539-9f37-162829444db4)
