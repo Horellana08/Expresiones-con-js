@@ -1,7 +1,7 @@
  #Expresiones-con-js
 Aprende a como utilizar expresiones regulares
 
-Ejercicio Propuesto:
+**Ejercicio Propuesto:**
 
 Realice un validador de expresiones regulares para los siguientes casos: a) direcciones
 IPv4 (tome en cuenta que las direcciones IP llegan como máximo hasta
